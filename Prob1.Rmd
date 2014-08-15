@@ -1,3 +1,7 @@
+---
+title: Exploring Exponential Distribution
+output: pdf_document
+---
 #Exponential Distribution
 
 ##Simulate data
@@ -49,3 +53,10 @@ qqnorm(y=means); qqline(y=means, col=2)
 
 As you can see, the values are very close to a normal distribution
 
+###4. Evaluate the coverage of the confidence interval for $1/\lambda: \bar X \pm 1.96 * S /\sqrt{n}$
+
+```{r}
+s <- sd(means)
+mean(means) + c(-1,1) * 1.96* s/sqrt(length(means))
+```
+As you can see above, the averages of 1000 sample distributions has a 95% chance of containing the population mean of 5.  In this case it does contain it.

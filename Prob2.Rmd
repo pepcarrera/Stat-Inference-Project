@@ -1,0 +1,5 @@
+---
+title: "Exploring ToothData"
+output: pdf_document
+---
+#ToothData Problem 2
