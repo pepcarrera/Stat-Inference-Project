@@ -1,6 +1,7 @@
 #Exponential Distribution
 
-##Setup data
+##Simulate data
+Per the assignment, set lambda equal to .2.  We will then simulate 1000 n=40 samples and take the mean of each.  This will be stored in a vector called "means"
 
 ```{r}
 lambda <- .2
@@ -12,3 +13,39 @@ for (i in 1:1000) {
         means[i] <- mean(rexp(n, lambda))
 }
 ```
+
+##Explore the data
+###1. Show where the distribution is centered at and compare it to the theoretical center of the distribution.
+The distribution is centered at:
+```{r}
+mean(means)
+```
+The theoretical center is $1/\lambda$ which is:
+
+```{r}
+1/lambda
+```
+
+###2. Show how variable it is and compare it to the theoretical variance of the distribution.
+Because the Central Limit Thoerim applies, the theoretical variance is $\sigma^2 / n$
+
+Using this, we can compare the distribution variance:
+```{r}
+var(means)
+```
+
+To the theoretical variance:
+```{r}
+((1/lambda)^2)/n
+```
+
+
+###3. Show that the distribution is approximately normal.
+We can use qqnorm to test for a normality.  qqnorm per it's description produces a normal QQ plot of the values in y. qqline adds a line to a “theoretical”, by default normal, quantile-quantile plot which passes through the probs quantiles, by default the first and third quartiles.
+
+```{r}
+qqnorm(y=means); qqline(y=means, col=2)
+```
+
+As you can see, the values are very close to a normal distribution
+
