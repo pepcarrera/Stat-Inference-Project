@@ -1,0 +1,14 @@
+#Exponential Distribution
+
+##Setup data
+
+```{r}
+lambda <- .2
+n <- 40
+nosim <- 1000
+means <- NULL
+
+for (i in 1:1000) {
+        means[i] <- mean(rexp(n, lambda))
+}
+```
