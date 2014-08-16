@@ -1,5 +1,26 @@
 ---
 title: "Exploring ToothData"
-output: pdf_document
+output: html_document
 ---
 #ToothData Problem 2
+###Load the ToothGrowth data and perform some basic exploratory data analyses 
+###Provide a basic summary of the data.
+Below is the loading of the data along with some basic exploration and summarization
+```{r}
+data("ToothGrowth")
+summary(ToothGrowth)
+str(ToothGrowth)
+```
+The len column shows the length of teeth in each of 10 guinea pigs at each of three dose levels of Vitamin C (0.5, 1, and 2 mg) in the dose column with each of two delivery methods (orange juice or ascorbic acid) in the supp column
+###Use confidence intervals and hypothesis tests to compare tooth growth by supp and dose. (Use the techniques from class even if there's other approaches worth considering)
+
+The results brlow show a low p-value for each dose level, and since the p-value is very low, we reject the null hypothesis. There is strong evidence of a mean increase in tooth growth between Ascorbic Acid and Orange Juice.
+```{r}
+t5 <- ToothGrowth[ToothGrowth$dose == 0.5,]
+t10 <- ToothGrowth[ToothGrowth$dose == 1.0,]
+t20 <- ToothGrowth[ToothGrowth$dose == 2.0,]
+
+t.test(t5$len[t5$supp == "OJ"], t5$len[t5$supp == "VC"], paired=TRUE, alternative="greater")
+t.test(t10$len[t10$supp == "OJ"], t5$len[t10$supp == "VC"], paired=TRUE, alternative="greater")
+t.test(t20$len[t20$supp == "OJ"], t5$len[t20$supp == "VC"], paired=TRUE, alternative="greater")
+```

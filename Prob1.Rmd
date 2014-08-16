@@ -2,7 +2,7 @@
 title: Exploring Exponential Distribution
 output: pdf_document
 ---
-#Exponential Distribution
+#Exponential Distribution Problem 1
 
 ##Simulate data
 Per the assignment, set lambda equal to .2.  We will then simulate 1000 n=40 samples and take the mean of each.  This will be stored in a vector called "means"
