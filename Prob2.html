@@ -78,7 +78,52 @@ summary(ToothGrowth)</code></pre>
 ##  $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
 ##  $ supp: Factor w/ 2 levels &quot;OJ&quot;,&quot;VC&quot;: 2 2 2 2 2 2 2 2 2 2 ...
 ##  $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...</code></pre>
-<p>The len column shows the length of teeth in each of 10 guinea pigs at each of three dose levels of Vitamin C (0.5, 1, and 2 mg) in the dose column with each of two delivery methods (orange juice or ascorbic acid) in the supp column</p>
+<p>The len column shows the length of teeth in each of 10 guinea pigs at each of three dose levels of Vitamin C (0.5, 1, and 2 mg) in the dose column with each of two delivery methods (orange juice or ascorbic acid) in the supp column ###Use confidence intervals and hypothesis tests to compare tooth growth by supp and dose. (Use the techniques from class even if there’s other approaches worth considering)</p>
+<pre class="r"><code>t5 &lt;- ToothGrowth[ToothGrowth$dose == 0.5,]
+t10 &lt;- ToothGrowth[ToothGrowth$dose == 1.0,]
+t20 &lt;- ToothGrowth[ToothGrowth$dose == 2.0,]
+
+t.test(t5$len[t5$supp == &quot;OJ&quot;], t5$len[t5$supp == &quot;VC&quot;], paired=TRUE, alternative=&quot;greater&quot;)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  t5$len[t5$supp == &quot;OJ&quot;] and t5$len[t5$supp == &quot;VC&quot;]
+## t = 2.979, df = 9, p-value = 0.007736
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  2.02  Inf
+## sample estimates:
+## mean of the differences 
+##                    5.25</code></pre>
+<pre class="r"><code>t.test(t10$len[t10$supp == &quot;OJ&quot;], t5$len[t10$supp == &quot;VC&quot;], paired=TRUE, alternative=&quot;greater&quot;)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  t10$len[t10$supp == &quot;OJ&quot;] and t5$len[t10$supp == &quot;VC&quot;]
+## t = 12.22, df = 9, p-value = 3.287e-07
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  12.51   Inf
+## sample estimates:
+## mean of the differences 
+##                   14.72</code></pre>
+<pre class="r"><code>t.test(t20$len[t20$supp == &quot;OJ&quot;], t5$len[t20$supp == &quot;VC&quot;], paired=TRUE, alternative=&quot;greater&quot;)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  t20$len[t20$supp == &quot;OJ&quot;] and t5$len[t20$supp == &quot;VC&quot;]
+## t = 17.9, df = 9, p-value = 1.204e-08
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  16.23   Inf
+## sample estimates:
+## mean of the differences 
+##                   18.08</code></pre>
+</div>
+<div id="state-your-conclusions-and-the-assumptions-needed-for-your-conclusions." class="section level3">
+<h3>4. State your conclusions and the assumptions needed for your conclusions.</h3>
+<p>The results show a low p-value for each dose level, and since the p-value is very low, we reject the null hypothesis. There is strong evidence of a mean increase in tooth growth between Ascorbic Acid and Orange Juice.</p>
+<p>This assumes that the guinea pigs were randomly selected for supplement type, and appropriate time was given to reset the pigs tooth growth. Further, we’re dosage levels were also separately done and appropriate time was given to reset the pigs in between switching dosages.</p>
 </div>
 </div>
 
